@@ -23,7 +23,12 @@ class _design_areaState extends State<design_area> {
     super.initState();
     context.read<HistoryBloc>().add(add_history(
         history: History(
-            layers: null, backgroundColor: selectedColor, ratio: ratio)));
+            layers: null,
+            backgroundColor: selectedColor,
+            ratio: ratio,
+            selectedItem: -1,
+            border: ''
+            )));
   }
 
   @override
@@ -50,6 +55,7 @@ class _design_areaState extends State<design_area> {
                 margin: const EdgeInsets.all(10),
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
+                  
                     color: ajrakColor, borderRadius: BorderRadius.circular(10)),
                 child: const Text('Save'),
               ),
@@ -58,39 +64,70 @@ class _design_areaState extends State<design_area> {
         ),
         body: Center(
           child: BlocBuilder<HistoryBloc, HistoryState>(
-            builder: (context, state) {
-             for (var element in state.histroyList) {
-                log('${element.backgroundColor}');
-                log('${element.layers}');
-                log('${element.matrix}');
-                log('${element.ratio}');
-             }
-              ratio = state.histroyList.isNotEmpty
-                  ? state.histroyList.first.ratio
+            builder: (context, hstate) {
+              ratio = hstate.histroyList.isNotEmpty
+                  ? hstate.histroyList.last.ratio
                   : ratio;
-              selectedColor = state.histroyList.isNotEmpty
-                  ? state.histroyList.first.backgroundColor
+              selectedColor = hstate.histroyList.isNotEmpty
+                  ? hstate.histroyList.last.backgroundColor
                   : selectedColor;
-              return AspectRatio(
-                aspectRatio: ratio,
-                child: Container(
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: selectedColor,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: BlocBuilder<LayredBloc, LayredState>(
-                    builder: (context, state) {
-                      return Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          ...state.layredList.map(
-                            (e) {
-                              return e.child;
-                            },
-                          )
-                        ],
-                      );
-                    },
+              var border=hstate.histroyList.isNotEmpty ? hstate.histroyList.last.border
+                  : "";
+              log(selectedColor.toString());
+              return GestureDetector(
+                onTap: (){
+                  context.read<HistoryBloc>().add(
+                                          add_history(
+                                              history: History(
+                                                border: hstate.histroyList.last.border,
+                                                  selectedItem:-1,
+                                                  layers: hstate
+                                                      .histroyList.last.layers,
+                                                  backgroundColor:
+                                                      selectedColor,
+                                                  ratio: ratio,
+                                                  matrix: hstate.histroyList
+                                                      .last.matrix)));
+                },
+                child: AspectRatio(
+                  aspectRatio: ratio,
+                  child: Container(
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      image: border!='' && (hstate.histroyList.last.border!=null) ? DecorationImage(image: AssetImage(hstate.histroyList.last.border!),fit: BoxFit.fill ): null,
+                        color: selectedColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: BlocBuilder<LayredBloc, LayredState>(
+                      builder: (context, state) {
+                        return Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            ...state.layredList.map(
+                              (e) {
+                                return GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        context.read<HistoryBloc>().add(
+                                            add_history(
+                                                history: History(
+                                                  border: hstate.histroyList.last.border,
+                                                    selectedItem: e.id,
+                                                    layers: hstate
+                                                        .histroyList.last.layers,
+                                                    backgroundColor:
+                                                        selectedColor,
+                                                    ratio: ratio,
+                                                    matrix: hstate.histroyList
+                                                        .last.matrix)));
+                                      });
+                                    },
+                                    child: e.child);
+                              },
+                            )
+                          ],
+                        );
+                      },
+                    ),
                   ),
                 ),
               );

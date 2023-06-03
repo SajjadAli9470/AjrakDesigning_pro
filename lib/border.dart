@@ -47,6 +47,8 @@ class _BordersState extends State<Borders> {
                                       Image.asset('assets/borders/b_$i.png')));
                           context.read<HistoryBloc>().add(add_history(
                               history: History(
+                                border:'assets/borders/b_$i.png',
+                                selectedItem: selectedItem,
                                   layers: layer,
                                   backgroundColor: selectedColor,
                                   ratio: ratio)));

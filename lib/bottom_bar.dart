@@ -1,5 +1,5 @@
 import 'package:design_ajrak2/background.dart';
-import 'package:design_ajrak2/help.dart';
+import 'package:design_ajrak2/Delete.dart';
 import 'package:design_ajrak2/patterns.dart';
 import 'package:design_ajrak2/ratio.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +19,13 @@ class ButtomBar extends StatefulWidget {
 class _ButtomBarState extends State<ButtomBar> {
   @override
   Widget build(BuildContext context) {
-    return   Container(
+    return   SizedBox(
         width: MediaQuery.of(context).size.width,
         height: 80 ,
         
         child: Container(
-          margin: EdgeInsets.all(10),
-          padding: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10)
@@ -38,7 +38,7 @@ class _ButtomBarState extends State<ButtomBar> {
                   Borders(),
                   BackGround(),
                   Ratio(),
-                  Help(), 
+                  Delete(), 
               ],
             ),
           ),

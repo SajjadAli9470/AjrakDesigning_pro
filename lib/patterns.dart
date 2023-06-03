@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:design_ajrak2/blocs/bloc/layred_bloc.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'Overlayed.dart';
 import 'blocs/bloc/history_bloc.dart';
-import 'design_area.dart';
 import 'design_var.dart';
 import 'model/history_model.dart';
 import 'model/layred_widgets.dart';
@@ -48,7 +46,9 @@ class _PattrensState extends State<Pattrens> {
                                                 LayeredWidget layer=LayeredWidget(id:id, child:OverlayedWidget( id:id,child: Image.asset('assets/custom/p_$i.png') ));
                                                 context.read<LayredBloc>().add(add_layer(layer:layer));
                                                 context.read<HistoryBloc>().add(add_history(
-                              history: History(layers: layer, backgroundColor: selectedColor, ratio: ratio,matrix:null)));
+                              history: History(
+                                border: state.histroyList.last.border,
+                                selectedItem : state.histroyList.last.selectedItem ,layers: layer, backgroundColor: selectedColor, ratio: ratio,matrix:null)));
                       
                                               },
                                               child: Container(

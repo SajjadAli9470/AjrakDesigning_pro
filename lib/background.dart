@@ -79,10 +79,13 @@ class _BackGroundState extends State<BackGround> {
                           });
                           context.read<HistoryBloc>().add(add_history(
                               history: History(
+                                border: state.histroyList.last.border,
                                   backgroundColor: selectedColor,
                                   ratio: ratio,
                                   layers: state.histroyList.first.layers,
-                                  matrix: state.histroyList.first.matrix)));
+                                  matrix: state.histroyList.first.matrix,
+                                  selectedItem: selectedItem
+                                  )));
 
                           
                         },

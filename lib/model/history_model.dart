@@ -8,12 +8,14 @@ class History {
   final Matrix4? matrix;
   final Color backgroundColor;
   final double ratio;
+  final int selectedItem;
+  final String? border;
   History({
     this.layers,
     this.matrix,
     required this.backgroundColor,
     required this.ratio,
+    required this.selectedItem,
+    this.border,
   });
-
-
 }
