@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'layred_bloc.dart';
 
 abstract class LayredEvent {
@@ -24,7 +25,20 @@ class delete_layer extends LayredEvent {
 
 class modified_layer extends LayredEvent {
   final LayeredWidget layer;
-
   modified_layer({required this.layer});
+}
 
+class layer_up extends LayredEvent {
+  final int id;
+  layer_up({
+    required this.id,
+  });
+  
+}
+class layer_down extends LayredEvent {
+  final int id;
+  layer_down({
+    required this.id,
+  });
+  
 }

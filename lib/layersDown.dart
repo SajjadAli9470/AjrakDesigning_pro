@@ -6,15 +6,15 @@ import 'blocs/bloc/layred_bloc.dart';
 import 'design_var.dart';
 import 'model/history_model.dart';
 
-class Delete extends StatefulWidget {
-  const Delete({super.key});
+class LayersDown extends StatefulWidget {
+  const LayersDown({super.key});
 
   @override
-  State<Delete> createState() => _DeleteState();
+  State<LayersDown> createState() => _LayersDownState();
 }
 
-class _DeleteState extends State<Delete> {
-  @override
+class _LayersDownState extends State<LayersDown> {
+   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HistoryBloc, HistoryState>(
       builder: (context, hstate) {
@@ -39,7 +39,7 @@ class _DeleteState extends State<Delete> {
                 borderRadius: BorderRadius.circular(3),
               ),
               child: Icon(
-                Icons.delete_outline_rounded,
+                Icons.layers_outlined,
                 color:
                     selectedd != -1 ? ajrakColor : ajrakColor.withOpacity(0.4),
                 size: 40,
@@ -48,4 +48,5 @@ class _DeleteState extends State<Delete> {
       },
     );
   }
+
 }

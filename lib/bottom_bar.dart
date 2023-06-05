@@ -1,13 +1,11 @@
 import 'package:design_ajrak2/background.dart';
 import 'package:design_ajrak2/Delete.dart';
+import 'package:design_ajrak2/help.dart';
 import 'package:design_ajrak2/patterns.dart';
 import 'package:design_ajrak2/ratio.dart';
 import 'package:flutter/material.dart';
 
-import 'Overlayed.dart';
 import 'border.dart';
-import 'design_area.dart';
-import 'design_var.dart';
 
 class ButtomBar extends StatefulWidget {
   const ButtomBar({super.key});
@@ -39,6 +37,10 @@ class _ButtomBarState extends State<ButtomBar> {
                   BackGround(),
                   Ratio(),
                   Delete(), 
+                  Help()
+
+                  // LayersUp(),
+                  // LayersDown()
               ],
             ),
           ),

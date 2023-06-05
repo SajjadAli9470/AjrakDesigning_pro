@@ -26,8 +26,8 @@ class _BordersState extends State<Borders> {
           builder: (context) {
             return Container(
               height: 80,
-              margin: EdgeInsets.all(10),
-              padding: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(10)),
               child: SingleChildScrollView(
